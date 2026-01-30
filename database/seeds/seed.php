@@ -1,15 +1,12 @@
 <?php
 declare(strict_types=1);
 
-$pdo = new PDO('sqlite:storage/demo.sqlite');
+$pdo = new PDO('sqlite:' . __DIR__ . '/../../storage/demo.sqlite');
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+$pdo->exec("PRAGMA foreign_keys = ON;");
 
-function uuid(): string {
-  return bin2hex(random_bytes(16));
-}
-function now(): string {
-  return (new DateTimeImmutable('now'))->format(DATE_ATOM);
-}
+function uuid(): string { return bin2hex(random_bytes(16)); }
+function now(): string { return (new DateTimeImmutable('now'))->format(DATE_ATOM); }
 
 $systemAccounts = [
   ['system_clearing','NGN','System Clearing NGN'],
@@ -21,7 +18,7 @@ $systemAccounts = [
 foreach ($systemAccounts as [$type,$ccy,$name]) {
   $id = uuid();
   $stmt = $pdo->prepare("INSERT INTO ledger_accounts (id,user_id,type,currency,name,created_at) VALUES (?,?,?,?,?,?)");
-  $stmt->execute([$id,null,$type,$ccy,$name,now()]);
+  $stmt->execute([$id, null, $type, $ccy, $name, now()]);
 }
 
 echo "Seeded system accounts.\n";
