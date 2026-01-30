@@ -1,0 +1,6 @@
+git status
+git add -A
+git commit -m "domain: implement ledger journal posting with invariants"
+git log --oneline --decorate --graph -10
+git diff
+git diff --staged
