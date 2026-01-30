@@ -1,0 +1,7 @@
+/vendor
+/.idea
+/.vscode
+/storage/*.sqlite
+/storage/logs/*.log
+/storage/outbox/*
+.env
