@@ -5,4 +5,4 @@
 /storage/logs/*.log
 /storage/outbox/*
 .env
-.txt
+.txtmy.txt
