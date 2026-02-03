@@ -7,7 +7,7 @@ use PDO;
 
 final class Db {
   public static function pdo(): PDO {
-    $pdo = new PDO('sqlite:storage/demo.sqlite');
+    $pdo = new PDO('sqlite:' . __DIR__ . '/../../../storage/demo.sqlite');
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $pdo->exec("PRAGMA foreign_keys = ON;");
     return $pdo;
