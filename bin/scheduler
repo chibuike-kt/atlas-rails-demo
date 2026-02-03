@@ -1,0 +1,11 @@
+#!/usr/bin/env php
+<?php
+declare(strict_types=1);
+
+require __DIR__ . '/../vendor/autoload.php';
+
+use App\Scheduler\SchedulerService;
+
+$s = new SchedulerService();
+$n = $s->tick();
+echo "Scheduler tick: enqueued $n job(s).\n";
