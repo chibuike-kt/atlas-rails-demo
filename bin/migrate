@@ -2,11 +2,40 @@
 <?php
 declare(strict_types=1);
 
-@mkdir('storage', 0777, true);
-$pdo = new PDO('sqlite:storage/demo.sqlite');
+$root = dirname(__DIR__);
+$dbPath = $root . '/storage/demo.sqlite';
+@mkdir($root . '/storage', 0777, true);
+
+$pdo = new PDO('sqlite:' . $dbPath);
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-$sql = file_get_contents(__DIR__ . '/../database/migrations/001_init.sql');
-$pdo->exec($sql);
+$migrationsDir = $root . '/database/migrations';
+$files = glob($migrationsDir . '/*.sql');
+sort($files);
 
-echo "Migrated.\n";
+foreach ($files as $file) {
+  $sql = file_get_contents($file);
+  if ($sql === false) throw new RuntimeException("cannot read $file");
+
+  try {
+    $pdo->exec($sql);
+    echo "OK  " . basename($file) . PHP_EOL;
+  } catch (Throwable $e) {
+    $msg = $e->getMessage();
+
+    // Ignore idempotency conflicts that happen on re-runs
+    $ignorable = (
+      str_contains($msg, 'duplicate column name') ||
+      str_contains($msg, 'already exists')
+    );
+
+    if ($ignorable) {
+      echo "SKIP " . basename($file) . " (" . $msg . ")" . PHP_EOL;
+      continue;
+    }
+
+    throw $e;
+  }
+}
+
+echo "Done. DB=" . $dbPath . PHP_EOL;
