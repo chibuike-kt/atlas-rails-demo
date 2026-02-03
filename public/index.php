@@ -16,7 +16,6 @@ use App\Queue\JobRepository;
 use Infra\OpenBanking\OpenBankingClient;
 use Domain\Rules\RuleCompiler;
 use App\Db\Db;
-use PDO;
 
 $router = new Router();
 $audit = new AuditLogger();
