@@ -4,3 +4,28 @@ git commit -m "domain: implement ledger journal posting with invariants"
 git log --oneline --decorate --graph -10
 git diff
 git diff --staged
+
+
+
+{
+    "user": {
+        "id": "f189f5b3a8c166f99dad33fa21a6fbdf",
+        "email": "demo@example.com"
+    }
+}
+
+
+{
+    "bank_link_id": "bb8544e99cd93fe346d1dc53cad63244",
+    "link_url": "https://mock.openbanking/link/fbb5aa08d1d30a94",
+    "external_ref": "obl_fbb5aa08d1d30a94"
+}
+
+
+{
+    "bank_link_id": "bb8544e99cd93fe346d1dc53cad63244",
+    "link_url": "https://mock.openbanking/link/fbb5aa08d1d30a94",
+    "external_ref": "obl_fbb5aa08d1d30a94"
+}
+
+http://127.0.0.1:8000/balances?user_id=d07c15cc5a1c7f640d1d77a3c3f6b9fa
