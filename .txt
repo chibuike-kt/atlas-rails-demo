@@ -9,23 +9,28 @@ git diff --staged
 
 {
     "user": {
-        "id": "f189f5b3a8c166f99dad33fa21a6fbdf",
+        "id": "90e64a5ab348f02edd7fc38543d1609d",
         "email": "demo@example.com"
     }
 }
 
-
 {
-    "bank_link_id": "bb8544e99cd93fe346d1dc53cad63244",
-    "link_url": "https://mock.openbanking/link/fbb5aa08d1d30a94",
-    "external_ref": "obl_fbb5aa08d1d30a94"
+    "bank_link_id": "549f838123754c81feacea9b79311826",
+    "link_url": "https://mock.openbanking/link/9f205b717b925879",
+    "external_ref": "obl_9f205b717b925879"
 }
 
-
 {
-    "bank_link_id": "bb8544e99cd93fe346d1dc53cad63244",
-    "link_url": "https://mock.openbanking/link/fbb5aa08d1d30a94",
-    "external_ref": "obl_fbb5aa08d1d30a94"
+    "bank_link_id": "549f838123754c81feacea9b79311826",
+    "status": "linked",
+    "bank_name": "Mock Bank",
+    "account_last4": "1755"
 }
 
-http://127.0.0.1:8000/balances?user_id=d07c15cc5a1c7f640d1d77a3c3f6b9fa
+"rule_id": "d814c2dac1e2e26d0a9b278d1d1270e0",
+
+{
+    "schedule_id": "6ff709006952b34154e10e31f4314e97",
+    "next_run_at": "2026-02-03T23:14:59+01:00",
+    "status": "active"
+}
